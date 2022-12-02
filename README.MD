@@ -25,17 +25,17 @@
 ### * Firewall on all sql nodes
    # My example has 3 servers:  sql1 (192.168.1.71), sql2 (192.168.1.72), sql3 (192.168.1.73)
    # Enable ports 1433,1496,5022
-     + netsh advfirewall firewall add rule name = SQLPort dir = in protocol = tcp action = allow localport = 1433 remoteip = localsubnet profile = DOMAIN
-     + netsh advfirewall firewall add rule name = SQLAvailGroupListenerPort dir = in protocol = tcp action = allow localport = 1496 remoteip = localsubnet profile = DOMAIN
-     + netsh advfirewall firewall add rule name = SQLAvailGroupPort dir = in protocol = tcp action = allow localport = 5022 remoteip = localsubnet profile = DOMAIN
+    netsh advfirewall firewall add rule name = SQLPort dir = in protocol = tcp action = allow localport = 1433 remoteip = localsubnet profile = DOMAIN
+    netsh advfirewall firewall add rule name = SQLAvailGroupListenerPort dir = in protocol = tcp action = allow localport = 1496 remoteip = localsubnet profile = DOMAIN
+    netsh advfirewall firewall add rule name = SQLAvailGroupPort dir = in protocol = tcp action = allow localport = 5022 remoteip = localsubnet profile = DOMAIN
    # Create custom firewall rule to allow all traffic between nodes in the cluster
-     - netsh advfirewall firewall add rule name = SQLServer1 dir = in remoteip = 192.168.1.71 profile = DOMAIN action = allow
-     - netsh advfirewall firewall add rule name = SQLServer2 dir = in remoteip = 192.168.1.72 profile = DOMAIN action = allow
-     - netsh advfirewall firewall add rule name = SQLServer3 dir = in remoteip = 192.168.1.73 profile = DOMAIN action = allow
-
-  Add Windows Features
-   - Failover Clustering
-   - .NET 3.5 ( don't need HTTP Activation or Non-HTTP Activation )
+    netsh advfirewall firewall add rule name = SQLServer1 dir = in remoteip = 192.168.1.71 profile = DOMAIN action = allow
+    netsh advfirewall firewall add rule name = SQLServer2 dir = in remoteip = 192.168.1.72 profile = DOMAIN action = allow
+    netsh advfirewall firewall add rule name = SQLServer3 dir = in remoteip = 192.168.1.73 profile = DOMAIN action = allow
+    
+   # Add Windows Features
+     * Failover Clustering
+       + .NET 3.5 ( don't need HTTP Activation or Non-HTTP Activation )
 
 
 **Create Cluster**
