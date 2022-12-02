@@ -3,60 +3,62 @@
 ## **Prerequisites**:
 
 ### * SQL Service Account ( Domain account ) Ex sql_svc
- + only needs sysadmin permissions in SQL, no domain or server permissions required
++ only needs sysadmin permissions in SQL, no domain or server permissions required
 
 ### * Need Listener IP 
- + Ex: 192.168.1.76
++ Ex: 192.168.1.76
 ### * Need Windows Cluster IP
- + Ex: 192.168.1.75
++ Ex: 192.168.1.75
 ### * Create SQL Service cluster DNS name in Active Directory pointing to Listener IP
- + Ex: appvolumesdb -> 192.168.1.76
++ Ex: appvolumesdb -> 192.168.1.76
 ### * Create Windows cluster DNS name in Active Directory pointing to Windows Cluster IP, ensure to check "Allow any authenticated user to update record"
- + Ex: sqlcluster -> 192.168.1.75
++ Ex: sqlcluster -> 192.168.1.75
 ### * Create a new OU for the SQL Servers that will be part of the cluster
- + The cluster computer account will need to have permissions to create/delete computer objects in this OU.
- + https://learn.microsoft.com/en-us/windows-server/failover-clustering/prestage-cluster-adds#grant-the-cno-permissions-to-the-ou
- + Ex: AppVolumesSql
++ The cluster computer account will need to have permissions to create/delete computer objects in this OU.
++ https://learn.microsoft.com/en-us/windows-server/failover-clustering/prestage-cluster-adds#grant-the-cno-permissions-to-the-ou
++ Ex: AppVolumesSql
 ### * Create SQL Service Computer Object in Active Directory
- + Ex: sql
++ Ex: sql
 ### * Create Windows File Share for Database Replication (needs about 5MB of space), ensure the SQL Service Account has read/write access.
- + Ex: DatabaseReplication
++ Ex: DatabaseReplication
 
 ### * Firewall on all sql nodes
- # My example has 3 servers:  sql1 (192.168.1.71), sql2 (192.168.1.72), sql3 (192.168.1.73)
- # Enable ports 1433,1496,5022
+# My example has 3 servers:  sql1 (192.168.1.71), sql2 (192.168.1.72), sql3 (192.168.1.73)
+# Enable ports 1433,1496,5022
     netsh advfirewall firewall add rule name = SQLPort dir = in protocol = tcp action = allow localport = 1433 remoteip = localsubnet profile = DOMAIN
     netsh advfirewall firewall add rule name = SQLAvailGroupListenerPort dir = in protocol = tcp action = allow localport = 1496 remoteip = localsubnet profile = DOMAIN
     netsh advfirewall firewall add rule name = SQLAvailGroupPort dir = in protocol = tcp action = allow localport = 5022 remoteip = localsubnet profile = DOMAIN
- # Create custom firewall rule to allow all traffic between nodes in the cluster
+# Create custom firewall rule to allow all traffic between nodes in the cluster
     netsh advfirewall firewall add rule name = SQLServer1 dir = in remoteip = 192.168.1.71 profile = DOMAIN action = allow
     netsh advfirewall firewall add rule name = SQLServer2 dir = in remoteip = 192.168.1.72 profile = DOMAIN action = allow
     netsh advfirewall firewall add rule name = SQLServer3 dir = in remoteip = 192.168.1.73 profile = DOMAIN action = allow
     
- # Add Windows Features
+# Add Windows Features
    * Failover Clustering
      + .NET 3.5 ( don't need HTTP Activation or Non-HTTP Activation )
 
 
 ## **Create Cluster**
- + Failover Cluster Manager
-   * -> Validate Configuration
-     -> Add Servers
-     -> Run all tests -> Next -> Next -> View Report (If all looks good) -> Finish
-   * -> This takes us to the Create Cluster Wizard
-     # Enter Cluster DNS name
-     # Next -> Finish
-   * Configure Quorum
-     # Right click on the cluster -> More Acitons -> Configure Cluster Quoruom Settings...
-       Select the quorum witness
-       Configure a file share witness
-       Browse -> Browse -> Type in a File Server hostname that you have admin writes on.  We're creating the share via the wizard so we don't have a chicken and the egg permission issue
-         - Click "New Shared Folder"
-           - Share name Ex ClusterWitness
-           - Local path -> Browse -> select "c$" and then click on "Make New Folder".  Call it something simliar to the share name.  Click off of the new folder and then back onto the folder.  Click OK
-           - Permissions - Use custom permissions
-             - grant full access to your cluster computer account.  It should match the name of your "Windows cluster DNS name" with a dollar sign at the end.
-               - Ex sqlcluster$
++ Failover Cluster Manager
+ * -> Validate Configuration
+   -> Add Servers
+   -> Run all tests -> Next -> Next -> View Report (If all looks good) -> Finish
+ * -> This takes us to the Create Cluster Wizard
+  + Enter Cluster DNS name
+  + Next -> Finish
+ * Configure Quorum
+  + Right click on the cluster -> More Acitons -> Configure Cluster Quoruom Settings...
+   * Select the quorum witness
+   * Configure a file share witness
+   * Browse -> Browse -> Type in a File Server hostname that you have admin writes on.  
+    + We're creating the share via the wizard so we don't have a chicken and the egg permission issue
+     - Click "New Shared Folder"
+      - Share name Ex ClusterWitness
+      - Local path -> Browse -> select "c$" and then click on "Make New Folder".  Call it something simliar to the share name.  
+      - Click off of the new folder and then back onto the folder.  Click OK
+       - Permissions - Use custom permissions
+        - grant full access to your cluster computer account.  It should match the name of your "Windows cluster DNS name" with a dollar sign at the end.
+         - Ex sqlcluster$
 
 
 **Install SQL**
