@@ -32,7 +32,7 @@
     netsh advfirewall firewall add rule name = SQLServer3 dir = in remoteip = 192.168.1.73 profile = DOMAIN action = allow
 # Add Windows Features
    * Failover Clustering
-     + .NET 3.5 ( don't need HTTP Activation or Non-HTTP Activation )
+   * .NET 3.5 ( don't need HTTP Activation or Non-HTTP Activation )
 
 ## **Create Cluster**
 + Failover Cluster Manager
