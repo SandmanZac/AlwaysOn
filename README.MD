@@ -57,28 +57,28 @@
        + Click off of the new folder and then back onto the folder.  Click OK
          * Permissions - Use custom permissions
            + grant full access to your cluster computer account.  It should match the name of your "Windows cluster DNS name" with a dollar sign at the end.
-           + Ex sqlcluster$
+           + Ex: sqlcluster$
 
 **Install SQL**
- - Configure Firewall - cmd or powershell:
-   - netsh advfirewall firewall add rule name = SQLPort dir = in protocol = tcp action = allow localport = 1433 remoteip = localsubnet profile = DOMAIN
-   - netsh advfirewall firewall add rule name = SQLAvailGroupListenerPort dir = in protocol = tcp action = allow localport = 1496 remoteip = localsubnet profile = DOMAIN
-   - netsh advfirewall firewall add rule name = SQLAvailGroupPort dir = in protocol = tcp action = allow localport = 5022 remoteip = localsubnet profile = DOMAIN
- - Launch Installer and install SQL Management Tools on the first node (Requires a reboot...)
- - Install New SQL Stand-Alone Install on all nodes
-   - Features:
-     - Database Engine Services
-     - SQL Server Replication
-     - Client Tools Connectivity
-   - Set both SQL Server Agent and SQL Server Database Engine to use the SQL Service Account and set both to Automatic startup
-   - Databse Engine Configuration
-     - Use Mixed Mode Auth
-       - Set the SA password
-       - Add either the current logged in user, or add an AD group that should have full access
-     - Data Directories - use at a minimum another disk for logs and another disk for databases
-     - Ensure TempDB "Number of files" matches the number of vcpus
-     - Ensure MaxDOP "Maximum degree of parallelism" matches the number of vcpus
-     - Memory - Up to user.  By default, SQL will use all RAM available.  If you want to guarntee some portion of memory to the OS, switch to Recommended and either use their "defaults" or edit the Max to be something reasonable.  If you switch to Recommended, make sure to check the "Click here to accept" box.
+* Configure Firewall - cmd or powershell:
+  + netsh advfirewall firewall add rule name = SQLPort dir = in protocol = tcp action = allow localport = 1433 remoteip = localsubnet profile = DOMAIN
+  + netsh advfirewall firewall add rule name = SQLAvailGroupListenerPort dir = in protocol = tcp action = allow localport = 1496 remoteip = localsubnet profile = DOMAIN
+  + netsh advfirewall firewall add rule name = SQLAvailGroupPort dir = in protocol = tcp action = allow localport = 5022 remoteip = localsubnet profile = DOMAIN
+* Launch Installer and install SQL Management Tools on the first node (Requires a reboot...)
+* Install New SQL Stand-Alone Install on all nodes
+  + Features:
+     * Database Engine Services
+     * SQL Server Replication
+     * Client Tools Connectivity
+  + Set both SQL Server Agent and SQL Server Database Engine to use the SQL Service Account and set both to Automatic startup
+  + Databse Engine Configuration
+     * Use Mixed Mode Auth
+       + Set the SA password
+       + Add either the current logged in user, or add an AD group that should have full access
+     * Data Directories - use at a minimum another disk for logs and another disk for databases
+     * Ensure TempDB "Number of files" matches the number of vcpus
+     * Ensure MaxDOP "Maximum degree of parallelism" matches the number of vcpus
+     * Memory - Up to user.  By default, SQL will use all RAM available.  If you want to guarntee some portion of memory to the OS, switch to Recommended and either use their "defaults" or edit the Max to be something reasonable.  If you switch to Recommended, make sure to check the "Click here to accept" box.
 
 
 **Launch "Sql Server 2019 Configuration Manager"**
