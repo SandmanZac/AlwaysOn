@@ -82,12 +82,12 @@
 
 
 **Launch "Sql Server 2019 Configuration Manager"**
-  - SQL Server Services -> SQL Server (MSSQLSERVER)
-    - Right click -> Properties -> Always on Availability Groups - Check "Enable Always on Availability Groups"
-    - Click Apply and go back to the "Log On" tab.  Click Restart
-  - SQL Server Network Configuration -> Protocols for MSSQLSERVER
-    - Enable Named Pipes
-    - Restart SQL Server (MSSQLSERVER) and SQL Server Agent (MSSQLSERVER)
+* SQL Server Services -> SQL Server (MSSQLSERVER)
+  + Right click -> Properties -> Always on Availability Groups - Check "Enable Always on Availability Groups"
+  + Click Apply and go back to the "Log On" tab.  Click Restart
+* SQL Server Network Configuration -> Protocols for MSSQLSERVER
+  + Enable Named Pipes
+  + Restart SQL Server (MSSQLSERVER) and SQL Server Agent (MSSQLSERVER)
 
 
 **Launch "Microsoft SQL Server Management Studio 18"**
