@@ -46,12 +46,12 @@
     + Enter Cluster DNS name
     + Next -> Finish
  * Configure Quorum
-  + Right click on the cluster -> More Acitons -> Configure Cluster Quoruom Settings...
-   * Select the quorum witness
-   * Configure a file share witness
-   * Browse -> Browse -> Type in a File Server hostname that you have admin writes on.  
-     - We're creating the share via the wizard so we don't have a chicken and the egg permission issue
-      - Click "New Shared Folder"
+   + Right click on the cluster -> More Acitons -> Configure Cluster Quoruom Settings...
+     * Select the quorum witness
+     * Configure a file share witness
+     * Browse -> Browse -> Type in a File Server hostname that you have admin writes on.  
+       `# We're creating the share via the wizard so we don't have a chicken and the egg permission issue
+     * Click "New Shared Folder"
        * Share name Ex ClusterWitness
        * Local path -> Browse -> select "c$" and then click on "Make New Folder".  Call it something simliar to the share name.  
       - Click off of the new folder and then back onto the folder.  Click OK
