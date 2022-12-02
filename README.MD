@@ -2,20 +2,20 @@
 
 ## **Prerequisites**:
 
-### 1. SQL Service Account ( Domain account ) Ex sql_svc
+### * SQL Service Account ( Domain account ) Ex sql_svc
   + only needs sysadmin permissions in SQL, no domain or server permissions required
 
- + Need Listener IP Ex 192.168.1.76
-   Need Windows Cluster IP - Ex 192.168.1.75
-  Create SQL Service cluster DNS name in Active Directory pointing to Listener IP Ex appvolumesdb -> 192.168.1.76
-  Create Windows cluster DNS name in Active Directory pointing to Windows Cluster IP, ensure to check "Allow any authenticated user to update record"
-    + Ex sqlcluster -> 192.168.1.75
-  Create a new OU for the SQL Servers that will be part of the cluster
-    + The cluster computer account will need to have permissions to create/delete computer objects in this OU.
-    + https://learn.microsoft.com/en-us/windows-server/failover-clustering/prestage-cluster-adds#grant-the-cno-permissions-to-the-ou
-  Create SQL Service Computer Object in Active Directory Ex sql
-  Create Windows File Share for Database Replication (needs about 5MB of space), ensure the SQL Service Account has read/write access.
-    - Ex DatabaseReplication
+### * Need Listener IP Ex 192.168.1.76
+### * Need Windows Cluster IP - Ex 192.168.1.75
+### * Create SQL Service cluster DNS name in Active Directory pointing to Listener IP Ex appvolumesdb -> 192.168.1.76
+### * Create Windows cluster DNS name in Active Directory pointing to Windows Cluster IP, ensure to check "Allow any authenticated user to update record"
+   + Ex sqlcluster -> 192.168.1.75
+### * Create a new OU for the SQL Servers that will be part of the cluster
+   + The cluster computer account will need to have permissions to create/delete computer objects in this OU.
+   + https://learn.microsoft.com/en-us/windows-server/failover-clustering/prestage-cluster-adds#grant-the-cno-permissions-to-the-ou
+### * Create SQL Service Computer Object in Active Directory Ex sql
+### * Create Windows File Share for Database Replication (needs about 5MB of space), ensure the SQL Service Account has read/write access.
+   + Ex DatabaseReplication
 
   Firewall on all sql nodes
     # My example has 3 servers:  sql1 (192.168.1.71), sql2 (192.168.1.72), sql3 (192.168.1.73)
