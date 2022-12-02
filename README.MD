@@ -3,10 +3,10 @@
 ## **Prerequisites**:
 
 ### 1. SQL Service Account ( Domain account ) Ex sql_svc
-####  + only needs sysadmin permissions in SQL, no domain or server permissions required
+  + only needs sysadmin permissions in SQL, no domain or server permissions required
 
-  Need Listener IP Ex 192.168.1.76
-  Need Windows Cluster IP - Ex 192.168.1.75
+ + Need Listener IP Ex 192.168.1.76
+   Need Windows Cluster IP - Ex 192.168.1.75
   Create SQL Service cluster DNS name in Active Directory pointing to Listener IP Ex appvolumesdb -> 192.168.1.76
   Create Windows cluster DNS name in Active Directory pointing to Windows Cluster IP, ensure to check "Allow any authenticated user to update record"
     + Ex sqlcluster -> 192.168.1.75
