@@ -1,6 +1,6 @@
 # This is my mashed together procedure for a Horizon App Volume Best Practice SQL Always On Cluster Installation
 
-## **Prerequisites**:
+## **Prerequisites**
 
 * SQL Service Account ( Domain account ) Ex sql_svc
   + only needs sysadmin permissions in SQL, no domain or server permissions required
@@ -59,7 +59,7 @@
            + grant full access to your cluster computer account.  It should match the name of your "Windows cluster DNS name" with a dollar sign at the end.
            + Ex: sqlcluster$
 
-**Install SQL**
+# **Install SQL**
 * Configure Firewall - cmd or powershell:
   + netsh advfirewall firewall add rule name = SQLPort dir = in protocol = tcp action = allow localport = 1433 remoteip = localsubnet profile = DOMAIN
   + netsh advfirewall firewall add rule name = SQLAvailGroupListenerPort dir = in protocol = tcp action = allow localport = 1496 remoteip = localsubnet profile = DOMAIN
@@ -81,7 +81,7 @@
      * Memory - Up to user.  By default, SQL will use all RAM available.  If you want to guarntee some portion of memory to the OS, switch to Recommended and either use their "defaults" or edit the Max to be something reasonable.  If you switch to Recommended, make sure to check the "Click here to accept" box.
 
 
-**Launch "Sql Server 2019 Configuration Manager"**
+# **Launch "Sql Server 2019 Configuration Manager"**
 * SQL Server Services -> SQL Server (MSSQLSERVER)
   + Right click -> Properties -> Always on Availability Groups - Check "Enable Always on Availability Groups"
   + Click Apply and go back to the "Log On" tab.  Click Restart
@@ -90,7 +90,7 @@
   + Restart SQL Server (MSSQLSERVER) and SQL Server Agent (MSSQLSERVER)
 
 
-**Launch "Microsoft SQL Server Management Studio 18"**
+# **Launch "Microsoft SQL Server Management Studio 18"**
 * Connect to each SQL Server
 * Expand Security and right click on Logins.  Choose "New Login..."
   + Click Search and find the SQL Service Account
