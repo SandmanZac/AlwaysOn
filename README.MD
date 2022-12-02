@@ -119,7 +119,7 @@
          + "Endpoints"
             * Ensure each has Port Number set to 5022
          + "Listener"
-            * # this URL will be utilized as the hostname for the cluster SQL Connection String
+            * This URL will be utilized as the hostname for the cluster SQL Connection String
             * Listener DNS Name should match "SQL Service cluster DNS name" from above Ex appvolumesdb
        * "Select Data Synchronization" 
          + Full database and log backup
