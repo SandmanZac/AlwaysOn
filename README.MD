@@ -50,14 +50,14 @@
      * Select the quorum witness
      * Configure a file share witness
      * Browse -> Browse -> Type in a File Server hostname that you have admin writes on.  
-       `# We're creating the share via the wizard so we don't have a chicken and the egg permission issue
-     * Click "New Shared Folder"
-       * Share name Ex ClusterWitness
-       * Local path -> Browse -> select "c$" and then click on "Make New Folder".  Call it something simliar to the share name.  
-      - Click off of the new folder and then back onto the folder.  Click OK
-       - Permissions - Use custom permissions
-        - grant full access to your cluster computer account.  It should match the name of your "Windows cluster DNS name" with a dollar sign at the end.
-         - Ex sqlcluster$
+       We're creating the share via the wizard so we don't have a chicken and the egg permission issue
+       + Click "New Shared Folder"
+         * Share name Ex ClusterWitness
+         * Local path -> Browse -> select "c$" and then click on "Make New Folder".  Call it something simliar to the share name.  
+       + Click off of the new folder and then back onto the folder.  Click OK
+         * Permissions - Use custom permissions
+           + grant full access to your cluster computer account.  It should match the name of your "Windows cluster DNS name" with a dollar sign at the end.
+           + Ex sqlcluster$
 
 **Install SQL**
  - Configure Firewall - cmd or powershell:
