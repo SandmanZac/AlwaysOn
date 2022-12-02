@@ -4,7 +4,6 @@
 
 ### * SQL Service Account ( Domain account ) Ex sql_svc
 + only needs sysadmin permissions in SQL, no domain or server permissions required
-
 ### * Need Listener IP 
 + Ex: 192.168.1.76
 ### * Need Windows Cluster IP
@@ -21,7 +20,6 @@
 + Ex: sql
 ### * Create Windows File Share for Database Replication (needs about 5MB of space), ensure the SQL Service Account has read/write access.
 + Ex: DatabaseReplication
-
 ### * Firewall on all sql nodes
 # My example has 3 servers:  sql1 (192.168.1.71), sql2 (192.168.1.72), sql3 (192.168.1.73)
 # Enable ports 1433,1496,5022
@@ -32,11 +30,9 @@
     netsh advfirewall firewall add rule name = SQLServer1 dir = in remoteip = 192.168.1.71 profile = DOMAIN action = allow
     netsh advfirewall firewall add rule name = SQLServer2 dir = in remoteip = 192.168.1.72 profile = DOMAIN action = allow
     netsh advfirewall firewall add rule name = SQLServer3 dir = in remoteip = 192.168.1.73 profile = DOMAIN action = allow
-    
 # Add Windows Features
    * Failover Clustering
      + .NET 3.5 ( don't need HTTP Activation or Non-HTTP Activation )
-
 
 ## **Create Cluster**
 + Failover Cluster Manager
@@ -59,7 +55,6 @@
        - Permissions - Use custom permissions
         - grant full access to your cluster computer account.  It should match the name of your "Windows cluster DNS name" with a dollar sign at the end.
          - Ex sqlcluster$
-
 
 **Install SQL**
  - Configure Firewall - cmd or powershell:
