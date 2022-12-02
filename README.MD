@@ -91,43 +91,43 @@
 
 
 **Launch "Microsoft SQL Server Management Studio 18"**
-  - Connect to each SQL Server
-  - Expand Security and right click on Logins.  Choose "New Login..."
-    - Click Search and find the SQL Service Account
-    - Click on "Server Roles" and add sysadmin
-  - Minimize the Security folder back to default so we can see more of the servers at once
-  - On SQL1:
-    - Right click on Databases and choose "New Database".
-      - Name AppVolumes
-      - For LogicalName AppVolumes:
-        - Initial Size should be 3
-        - Autogrowth should be By 1MB, Unlimited
-      - For LogicalName AppVolumes_log:
-        - Initial Size should be 1
-        - Autogrowth should be By 10percent, Unlimited
-    - Before adding new DB to Availability Group, run a backup in the query window:
-      - "Backup database appvolumes to disk = 'c:\users\zac\Downloads\appvolumes_bak'"
-    - Right click on Availability Groups -> New Availability Group
-      - The name should match the "SQL Service Computer Object" that you created in Active Directory
-      - Ensure Status has "Meets prerequisites".  If it does not, click the status and see what's wrong
-      - "Specify Replicas"
-        - "Replicas"
-          - Click "Add Replica..." and add the other SQL nodes
-            - Change all of their "Availability Mode" to "Synchronous commit"
-            - Select Automatic Failover on all
-            - For the databases with an "Initial Role" of "Secondary", set "Readable Secondary" to Yes
-        - "Endpoints"
-          - Ensure each has Port Number set to 5022
-        - "Listener"
-          - # this URL will be utilized as the hostname for the cluster SQL Connection String
-          - Listener DNS Name should match "SQL Service cluster DNS name" from above Ex appvolumesdb
-      - "Select Data Synchronization" 
-        - Full database and log backup
-          - Specify the path to "Windows File Share for Database Replication" you created above.  Ex DatabaseReplication
-      - "Validation"
-        - Ensure we have green checkmarks on all tests
-          - If not, go back and fix what it shows you is wrong
-    - After the Availability Group is created, in SQL Managment Studio, right click on the "(Primary)" Availability Group and choose "Show Dashboard"
-      - Wait until all nodes are in the Synchronized "Synchonization State"
-    - Test Failover
-      - Right click on the current "(Primary)" in the Availability Groups and choose Failover...
+* Connect to each SQL Server
+* Expand Security and right click on Logins.  Choose "New Login..."
+  + Click Search and find the SQL Service Account
+  + Click on "Server Roles" and add sysadmin
+* Minimize the Security folder back to default so we can see more of the servers at once
+* On SQL1:
+  + Right click on Databases and choose "New Database".
+     * Name AppVolumes
+     * For LogicalName AppVolumes:
+        + Initial Size should be 3
+        + Autogrowth should be By 1MB, Unlimited
+     * For LogicalName AppVolumes_log:
+        + Initial Size should be 1
+        + Autogrowth should be By 10percent, Unlimited
+   + Before adding new DB to Availability Group, run a backup in the query window:
+      * "Backup database appvolumes to disk = 'c:\users\zac\Downloads\appvolumes_bak'"
+   + Right click on Availability Groups -> New Availability Group
+      * The name should match the "SQL Service Computer Object" that you created in Active Directory
+      * Ensure Status has "Meets prerequisites".  If it does not, click the status and see what's wrong
+      * "Specify Replicas"
+         + "Replicas"
+            * Click "Add Replica..." and add the other SQL nodes
+              + Change all of their "Availability Mode" to "Synchronous commit"
+              + Select Automatic Failover on all
+              + For the databases with an "Initial Role" of "Secondary", set "Readable Secondary" to Yes
+         + "Endpoints"
+            * Ensure each has Port Number set to 5022
+         + "Listener"
+            * # this URL will be utilized as the hostname for the cluster SQL Connection String
+            * Listener DNS Name should match "SQL Service cluster DNS name" from above Ex appvolumesdb
+       * "Select Data Synchronization" 
+         + Full database and log backup
+            * Specify the path to "Windows File Share for Database Replication" you created above.  Ex DatabaseReplication
+       * "Validation"
+         + Ensure we have green checkmarks on all tests
+            * If not, go back and fix what it shows you is wrong
+    + After the Availability Group is created, in SQL Managment Studio, right click on the "(Primary)" Availability Group and choose "Show Dashboard"
+       * Wait until all nodes are in the Synchronized "Synchonization State"
+    + Test Failover
+       * Right click on the current "(Primary)" in the Availability Groups and choose Failover...
