@@ -40,8 +40,8 @@
 ## **Create Cluster**
 + Failover Cluster Manager
   * -> Validate Configuration
-    -> Add Servers
-    -> Run all tests -> Next -> Next -> View Report (If all looks good) -> Finish
+  -> Add Servers
+  -> Run all tests -> Next -> Next -> View Report (If all looks good) -> Finish
   * -> This takes us to the Create Cluster Wizard
     + Enter Cluster DNS name
     + Next -> Finish
