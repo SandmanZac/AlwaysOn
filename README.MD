@@ -3,9 +3,9 @@
 ## **Prerequisites**:
 
 * SQL Service Account ( Domain account ) Ex sql_svc
- + only needs sysadmin permissions in SQL, no domain or server permissions required
+  + only needs sysadmin permissions in SQL, no domain or server permissions required
 * Need Listener IP 
- + Ex: 192.168.1.76
+  + Ex: 192.168.1.76
 * Need Windows Cluster IP
  + Ex: 192.168.1.75
 * Create SQL Service cluster DNS name in Active Directory pointing to Listener IP
