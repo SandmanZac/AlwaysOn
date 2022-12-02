@@ -131,3 +131,13 @@
        * Wait until all nodes are in the Synchronized "Synchonization State"
     + Test Failover
        * Right click on the current "(Primary)" in the Availability Groups and choose Failover...
+
+
+Source Info compiled from:
+* VMWare Installtion Guide for Horizon App Volumes on SQL Always On Cluster
+  + https://techzone.vmware.com/resource/app-volumes-configuration#install-sql-server-stand-alone-in-all-vms
+* SQLShack's guides for building the stack
+  + https://www.sqlshack.com/a-comprehensive-guide-to-sql-server-always-on-availability-groups-on-windows-server-2016/
+  + https://www.sqlshack.com/configure-domain-controller-and-active-directory-for-sql-server-always-on-availability-groups/
+https://www.sqlshack.com/configure-failover-clusters-storage-controllers-and-quorum-configurations-for-sql-server-always-on-availability-groups/
+https://www.sqlshack.com/install-sql-server-2019-on-windows-server-2016-with-sql-server-always-on-availability-groups/
