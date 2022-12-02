@@ -26,7 +26,7 @@
     * sql2 (192.168.1.72)
     * sql3 (192.168.1.73)
   + Enable ports 1433,1496,5022
-    `netsh advfirewall firewall add rule name = SQLPort dir = in protocol = tcp action = allow localport = 1433 remoteip = localsubnet profile = DOMAIN`
+  + `netsh advfirewall firewall add rule name = SQLPort dir = in protocol = tcp action = allow localport = 1433 remoteip = localsubnet profile = DOMAIN`
     `netsh advfirewall firewall add rule name = SQLAvailGroupListenerPort dir = in protocol = tcp action = allow localport = 1496 remoteip = localsubnet profile = DOMAIN`
     `netsh advfirewall firewall add rule name = SQLAvailGroupPort dir = in protocol = tcp action = allow localport = 5022 remoteip = localsubnet profile = DOMAIN`
   + Create custom firewall rule to allow all traffic between nodes in the cluster
