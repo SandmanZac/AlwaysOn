@@ -68,7 +68,6 @@
 * Install New SQL Stand-Alone Install on all nodes
   + Features:
      * Database Engine Services
-     * SQL Server Replication
      * Client Tools Connectivity
   + Set both SQL Server Agent and SQL Server Database Engine to use the SQL Service Account and set both to Automatic startup
   + Databse Engine Configuration
